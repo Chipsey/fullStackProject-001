@@ -14,12 +14,25 @@ class Navbar extends Component {
                     GET STARTED
                   </Link>
                 </li>
+
+                <li>
+                  <Link className='nav-link' to="/login">
+                    MOBILE
+                  </Link>
+                </li>
+
                 <li>
                   <Link className='nav-link' to="/login">
                     LOGIN
                   </Link>
                 </li>
-                <li>ABOUT</li>
+
+                <li>
+                  <Link className='nav-link'>
+                    ABOUT
+                  </Link>
+                </li>
+                
             </ul>
         </nav>
       </div>
