@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component } from 'react'
 import TextField from '@mui/material/TextField';
 
 
 import {motion} from "framer-motion";
 
-class Login extends Component {
+class About extends Component {
   render() {
     return (
       <motion.div
@@ -15,9 +14,6 @@ class Login extends Component {
         className={this.props.mode}>
             <div className="login--home">
                 <div className="login-content-background"></div>
-
-                <video src="login--vid.mp4" autoPlay loop muted  width="100%"></video>
-
 
                 <div className="login--content">
                     <img src="logo.png" alt="logo" width="300px" className="login--logo"></img>
@@ -61,18 +57,15 @@ class Login extends Component {
                                 
                             </div>
                             <div className="login--buttons">
-                                <a href="#">
+                                <a href="google.lk">
                                     <button className="button--si"><img src="lock--icon.png" alt="icon" width="12px" className="lock--icon"></img> LOG IN</button>
                                 </a> 
 
-                                <Link className="nav-link" to="/forgotpassword">
+                                <a href="google.lk">
                                     <button
                                     className="button--fogotpass"> Fogot Password?</button>
-                                </Link> 
+                                </a> 
                             </div>
-
-                            
-                        
                         </div>
                     </div>
                 </div>
@@ -83,4 +76,4 @@ class Login extends Component {
 }
 
 
-export default Login;
+export default About;
