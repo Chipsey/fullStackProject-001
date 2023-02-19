@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import { PropTypes } from "prop-types";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import { withRouter } from "react-router-dom";
 import classNames from "classnames";
 import { connect } from "react-redux";
-import { registeruser } from "../../actions/authActions";
+import { registerUser } from "../../actions/authActions";
 
 import { motion } from "framer-motion";
-import register from "../../validation/register";
 
 class Registration extends Component {
   constructor() {
@@ -41,11 +41,12 @@ class Registration extends Component {
       password2: this.state.password2,
     };
 
-    this.props.registeruser(newUser, this.props.history);
+    this.props.registerUser(newUser, this.props.history);
   };
 
   render() {
     const { errors } = this.state;
+
     return (
       <motion.div
         initial={{ opacity: 0, y: "1%" }}
@@ -132,7 +133,7 @@ class Registration extends Component {
 }
 
 Registration.propTypes = {
-  registeruser: PropTypes.func.isRequired,
+  registerUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
 };
@@ -142,4 +143,4 @@ const mapStateToProps = (state) => ({
   errors: state.errors,
 });
 
-export default connect(mapStateToProps, { registeruser })(Registration);
+export default connect(mapStateToProps, { registerUser })(withRouter(Registration));

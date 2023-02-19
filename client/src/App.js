@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { CompatRouter } from "react-router-dom-v5-compat";
+
 import { Provider } from "react-redux";
 import store from "./store";
 
@@ -28,21 +30,35 @@ class App extends Component {
         <Router>
           <div>
             <Navbar mode={mode} />
-            <Routes>
-              <Route exact path="/" element={<Content mode={mode} />}></Route>
-              <Route
-                exact
-                path="/login"
-                element={<Login mode={mode} />}
-              ></Route>
-              <Route exact path="/register" element={<Registration />}></Route>
-              <Route exact path="/about" element={<About />}></Route>
-              <Route
-                exact
-                path="/forgotpassword"
-                element={<ForgotPassword />}
-              ></Route>
-            </Routes>
+            <CompatRouter>
+              <Switch>
+                <Route
+                  exact
+                  path="/"
+                  render={(props) => <Content mode={mode} {...props} />}
+                ></Route>
+                <Route
+                  exact
+                  path="/login"
+                  render={(props) => <Login mode={mode} {...props} />}
+                ></Route>
+                <Route
+                  exact
+                  path="/register"
+                  render={(props) => <Registration mode={mode} {...props} />}
+                ></Route>
+                <Route
+                  exact
+                  path="/about"
+                  render={(props) => <About mode={mode} {...props} />}
+                ></Route>
+                <Route
+                  exact
+                  path="/forgotpassword"
+                  render={(props) => <ForgotPassword mode={mode} {...props} />}
+                ></Route>
+              </Switch>
+            </CompatRouter>
           </div>
         </Router>
       </Provider>

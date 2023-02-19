@@ -43,7 +43,7 @@ class Login extends Component {
           <video src="login--vid.mp4" autoPlay loop muted width="100%"></video>
 
           <div className="login--content">
-            <Link className="nav-link" to="/">
+            <Link to="/" className="nav-link">
               <img
                 src="logo.png"
                 alt="logo"
