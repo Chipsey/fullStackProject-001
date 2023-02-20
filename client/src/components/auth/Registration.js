@@ -53,8 +53,10 @@ class Registration extends Component {
         animate={{ opacity: 1, y: "0%" }}
         transition={{ duration: 0.75, ease: "easeOut" }}
       >
+          <img src="register--image.png" alt="register-back" className="register--image"></img>
         <div className="register">
-          <form noValidate onSubmit={this.onSubmit}>
+          <form className="register--form--full" noValidate onSubmit={this.onSubmit}>
+          <div className="register--heading">REGISTRATION</div>
             <div className="register--inputfields">
               <TextField
                 id="outlined-name-input"
@@ -107,7 +109,7 @@ class Registration extends Component {
             <div className="register--inputfields">
               <TextField
                 id="outlined-password2-input"
-                label="Re-Enter Password"
+                label="Confirm Password"
                 type="password"
                 className={classNames("register--form", {
                   "is-invalid": errors.password2,
@@ -121,7 +123,7 @@ class Registration extends Component {
               )}
             </div>
             <div className="register--inputfields">
-              <Button sx={{ mt: 1, mr: 1 }} type="submit" variant="outlined">
+              <Button sx={{ mt: 1, mr: 1 }} type="submit" variant="outlined" className="register--form--button">
                 SUBMIT
               </Button>
             </div>
