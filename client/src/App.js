@@ -13,6 +13,7 @@ import Login from "./components/auth/Login";
 import Registration from "./components/auth/Registration";
 import About from "./components/auth/About";
 import ForgotPassword from "./components/auth/ForgotPassword";
+import Dashboard from "./components/auth/Dashboard";
 
 let date = new Date();
 const hours = date.getHours();
@@ -56,6 +57,11 @@ class App extends Component {
                   exact
                   path="/forgotpassword"
                   render={(props) => <ForgotPassword mode={mode} {...props} />}
+                ></Route>
+                <Route
+                  exact
+                  path="/dashboard"
+                  render={(props) => <Dashboard mode={mode} {...props} />}
                 ></Route>
               </Switch>
             </CompatRouter>
