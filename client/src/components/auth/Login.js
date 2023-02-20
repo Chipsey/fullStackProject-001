@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import TextField from "@mui/material/TextField";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import classNames from "classnames";
+import { loginUser } from "../../actions/authActions";
 
 import { motion } from "framer-motion";
 
@@ -16,20 +20,33 @@ class Login extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.auth.isAuthenticated) {
+      this.props.history.push("/dashboard");
+    }
+
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
+
   onSubmit(e) {
     e.preventDefault();
-    const user = {
+    const userData = {
       email: this.state.email,
       password: this.state.password,
     };
 
-    console.log(user);
+    this.props.loginUser(userData);
   }
 
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
+
   render() {
+    const { errors } = this.state;
+
     return (
       <motion.div
         initial={{ opacity: 0, y: "1%" }}
@@ -92,19 +109,26 @@ class Login extends Component {
                         id="outlined-basic1"
                         label="UserName"
                         variant="outlined"
-                        className="login--email-input"
+                        className={classNames("login--email-input", {
+                          "is-invalid": errors.email,
+                        })}
                         size="small"
                         value={this.state.email}
                         onChange={this.onChange}
                         color="primary"
                         name="email"
                       />
+                      {errors.email && (
+                        <div className="invalid-feedback">{errors.email}</div>
+                      )}
                     </div>
 
                     <div className="login--input">
                       <TextField
                         id="outlined-basic"
-                        className="login-pass-input"
+                        className={classNames("login-pass-input", {
+                          "is-invalid": errors.password,
+                        })}
                         label="Password"
                         variant="outlined"
                         value={this.state.password}
@@ -113,6 +137,11 @@ class Login extends Component {
                         type="password"
                         name="password"
                       />
+                      {errors.password && (
+                        <div className="invalid-feedback">
+                          {errors.password}
+                        </div>
+                      )}
                     </div>
                   </div>
                   <div className="login--buttons">
@@ -145,4 +174,15 @@ class Login extends Component {
   }
 }
 
-export default Login;
+Login.propTypes = {
+  loginUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  errors: state.errors,
+});
+
+export default connect(mapStateToProps, { loginUser })(Login);

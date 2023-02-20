@@ -143,4 +143,6 @@ const mapStateToProps = (state) => ({
   errors: state.errors,
 });
 
-export default connect(mapStateToProps, { registerUser })(withRouter(Registration));
+export default connect(mapStateToProps, { registerUser })(
+  withRouter(Registration)
+);
