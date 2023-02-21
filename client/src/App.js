@@ -14,6 +14,7 @@ import Registration from "./components/auth/Registration";
 import About from "./components/auth/About";
 import ForgotPassword from "./components/auth/ForgotPassword";
 import Dashboard from "./components/auth/Dashboard";
+import Leave from "./components/auth/Leave";
 
 let date = new Date();
 const hours = date.getHours();
@@ -63,6 +64,18 @@ class App extends Component {
                   path="/dashboard"
                   render={(props) => <Dashboard mode={mode} {...props} />}
                 ></Route>
+                <React.Fragment>
+                  <Route
+                    exact
+                    path="/leave"
+                    render={(props) => <Dashboard mode={mode} {...props} />}
+                  ></Route>
+                  <Route
+                    exact
+                    path="/leave"
+                    render={(props) => <Leave mode={mode} {...props} />}
+                  ></Route>
+                </React.Fragment>
               </Switch>
             </CompatRouter>
           </div>

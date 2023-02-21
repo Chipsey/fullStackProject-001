@@ -15,7 +15,23 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
-  avatar: {
+  jobRole: {
+    type: String,
+  },
+  workingDays: {
+    type: [String],
+  },
+  checkInTime: {
+    type: String,
+  },
+  checkOutTime: {
+    type: String,
+  },
+  isAdmin: {
+    type: Boolean,
+    default: false,
+  },
+  avatar: { 
     type: String,
   },
   date: {
