@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
-class About extends Component {
+class Dashboard extends Component {
   render() {
     return (
       <motion.div
@@ -11,9 +14,20 @@ class About extends Component {
         className={this.props.mode}
       >
         <h1>Dashboard is Working!!</h1>
+        <Link to="/leave">
+          <button className="dashboard--leaveButton">Request Leave</button>
+        </Link>
       </motion.div>
     );
   }
 }
 
-export default About;
+Dashboard.propTypes = {
+  auth: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps)(Dashboard);
